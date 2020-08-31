@@ -1,0 +1,49 @@
+@import 'variables'
+
+\:host
+  display: block
+  padding: 3px
+
+.switch
+  position: relative
+  display: inline-block
+  top: 5px
+  width: 40px
+  height: 20px
+  input
+    opacity: 0
+    width: 0
+    height: 0
+    &:checked + .slider
+      background-color: $color-orange
+      &::before
+        -webkit-transform: translateX(15px)
+        -ms-transform: translateX(15px)
+        transform: translateX(15px)
+  .slider
+    position: absolute
+    cursor: pointer
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: $bg-light-gradient
+    -webkit-transition: .4s
+    transition: .4s
+    &::before
+      position: absolute
+      content: ""
+      height: 26px
+      width: 26px
+      left: 0px
+      bottom: -3px
+      -webkit-transition: .4s
+      transition: .4s
+      box-shadow: 0 1px 1px 0 rgba(89, 98, 120, 0.24)
+      border: solid 0.5px #dee1eb
+      background-color: #ffffff
+      background-image: linear-gradient(to bottom, #ffffff, #f6f8fd)
+    &.round
+      border-radius: 34px
+      &::before
+        border-radius: 50%

@@ -1,0 +1,65 @@
+.btn
+  border-radius: 18.8px
+  border: none
+  color: #{$color-gray}
+  display: inline-block
+  font-weight: 400
+  text-align: center
+  vertical-align: middle
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  background-color: transparent
+  border: 1px solid transparent
+  padding: .15rem .75rem
+  font-size: 1rem
+  line-height: 1.5
+  border-radius: 2rem
+  transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
+  margin: 0 .3rem
+  &:not(:disabled):not(.disabled)
+    cursor: pointer
+  &-primary
+    background: var(--bg-color)
+    box-shadow:  2px 2px 2px var(--dark-shadow), -2px -2px 2px var(--bright-shadow)
+    &-blue
+      background-color: #2d576b
+      color: #28a7dd
+      &:hover
+        outline: none
+        box-shadow:  5px 5px 15px var(--dark-shadow), -2px -2px 15px #248fbd
+       
+      &:focus
+        outline: none
+        box-shadow: 2px 2px 2px var(--bright-shadow), -2px -2px 2px var(--dark-shadow)
+    &-red
+      background-color: #65424b
+      color: #d75657
+      &:hover
+        outline: none
+        box-shadow:  5px 5px 15px var(--dark-shadow), -2px -2px 15px #ad3d3d
+       
+      &:focus
+        outline: none
+        box-shadow: 2px 2px 2px var(--bright-shadow), -2px -2px 2px var(--dark-shadow)
+    &-green
+      background-color: #295c4e
+      color: #10c469
+      &:hover
+        outline: none
+        box-shadow:  5px 5px 15px var(--dark-shadow), -2px -2px 15px #199557
+       
+      &:focus
+        outline: none
+        box-shadow: 2px 2px 2px var(--bright-shadow), -2px -2px 2px var(--dark-shadow)
+    &-yellow
+      background-color: #635d48
+      color: #f9c851
+      &:hover
+        outline: none
+        box-shadow:  5px 5px 15px var(--dark-shadow), -2px -2px 15px #e0b85b
+       
+      &:focus
+        outline: none
+        box-shadow: 2px 2px 2px var(--bright-shadow), -2px -2px 2px var(--dark-shadow)

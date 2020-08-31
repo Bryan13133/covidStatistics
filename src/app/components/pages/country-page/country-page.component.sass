@@ -1,0 +1,41 @@
+@import 'variables'
+
+.stats-dashboard
+  min-height: calc(100vh - 55px)
+  .title
+    margin: 0
+    font-size: 7em
+
+.box-rates
+  background-color: var(--bg-color)
+  text-align: center
+  font-size: 1.5rem
+  border-radius: 5px
+
+  &-blue
+    color: $color-blue
+    margin-top: 1%
+  &-red
+    color: $color-red
+    margin-top: 1%
+  &-yellow
+    color: $color-yellow
+    margin-top: 1%
+  &-green
+    color: $color-green
+    margin-top: 1%
+
+.scrolling-box
+  height:350px
+  overflow-y: scroll
+.spinner
+  color: $color-gray-dark
+  margin: auto
+  text-align: center
+  padding: 150px 0
+.spinner-box
+  color: $color-gray-dark
+  margin: auto
+  text-align: center
+  padding: 15px 0
+  background-color: var(--bg-color)

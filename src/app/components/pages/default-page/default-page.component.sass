@@ -1,0 +1,146 @@
+@import 'variables'
+
+.main-section
+  min-height: calc(100vh - 55px)
+  .left
+    margin-bottom: 1em
+    .main-content
+      .main-title
+        .title
+          margin: 0
+          font-size: 7em
+        .subtitle
+          font-size: 1.5em
+          margin: 0
+      .main-description
+        font-family: $font-raleway
+        font-size: 1.3em
+  .right
+    padding: 1em
+    margin-bottom: 1em
+    .main-container-image
+      margin: 0 auto
+      padding: 4em
+      max-width: 30em
+      position: relative
+      .image
+        margin: 0 auto
+        width: 100%
+      .bg-image
+        position: absolute
+        background: var(--bg-color)
+        transition: background 0.7s, box-shadow 0.5s
+        box-shadow:  15px 10px 25px var(--dark-shadow), -15px -10px 25px var(--bright-shadow)
+        border-radius: 50%
+        left: 0
+        right: 0
+        width: 100%
+        top: 0
+        bottom: 0
+        z-index: -1
+
+.country-link
+  color: inherit
+  text-decoration: inherit
+
+.stats-dashboard
+  .stats-title
+    font-size: 5em
+
+.tittle
+  font-family: $font-raleway
+  font-weight: bold
+  text-align: start
+  padding-left: 5px
+.infectedCases
+  text-align: right
+  font-family: $font-raleway
+  color: $color-blue
+.infectedDeaths
+  text-align: right
+  color: $color-red
+  font-family: $font-raleway
+.text-blue
+  text-align: right
+  color: $color-blue
+  font-family: $font-raleway
+  font-size: 11px
+.text-red
+  text-align: right
+  color: $color-red
+  font-family: $font-raleway
+.border
+  border-bottom-style: solid
+  border-bottom-width: 1px
+  border-bottom-color: grey
+  margin: 0 auto
+  padding-top: 2%
+.scrolling
+  height:150px
+  overflow-y: scroll
+
+.search-input
+  background: var(--bg-color)
+  font-family: $font-raleway
+  font-weight: bold
+  height: 25px
+  color: $color-gray
+  border: 0px
+  box-shadow: inset 3px 3px 20px var(--dark-shadow), inset -30px -3px 20px var(--bright-shadow)
+  border-radius: 15px
+  background: var(--bg-color)
+
+.has-search .form-control 
+  padding-left: 1.875rem
+  margin-top: 5px
+
+.has-search .form-control-feedback 
+  position: absolute
+  display: block
+  width: 25px
+  height: 25px
+  text-align: center
+  color:$color-gray
+  padding-left: 9px
+
+.box-rates
+  background-color: var(--bg-color)
+  text-align: center
+  font-size: 1.5rem
+  border-radius: 5px
+
+  &-blue
+    color: $color-blue
+    margin-top: 1%
+  &-red
+    color: $color-red
+    margin-top: 1%
+  &-yellow
+    color: $color-yellow
+    margin-top: 1%
+  &-green
+    color: $color-green
+    margin-top: 1%
+
+.scrolling-box
+  height:350px
+  overflow-y: scroll
+.spinner
+  color: $color-gray-dark
+  margin: auto
+  text-align: center
+  padding: 150px 0
+.spinner-box
+  color: $color-gray-dark
+  margin: auto
+  text-align: center
+  padding: 15px 0
+  background-color: var(--bg-color)
+
+select
+  -o-appearance: none
+  -ms-appearance: none
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+

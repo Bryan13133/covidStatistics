@@ -1,0 +1,202 @@
+
+<section class="main-section row">
+  <div class="col-12 col-lg-6 left align-self-center">
+    <div class="main-content">
+      <div class="main-title">
+        <h2 class="text-gray text-bold subtitle">210+ countries are affected by</h2>
+        <h2 class="text-orange text-bold title">COVID19</h2>
+      </div>
+      <div class="main-description">
+        <p class="text-gray-dark">The Virus was first reported in Wuhan, Hubel China on 17 November 2019, and on 11 March 2020, the World
+          Health Organization (WHO) declared it a global pandemic.</p>
+        <p class="text-gray-dark text-bold">Please use it as a visual AID only, and don't base any decision (medical or logistical) based on the
+          data provided in these charts.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6 right align-self-center hidden-md">
+    <div class="main-container-image">
+      <div class="bg-image"></div>
+      <img class="image" src="assets/images/covid_image.png" alt="Covid main Image">
+    </div>
+  </div>
+</section>
+
+<section class="stats-dashboard">
+  <h1 class="stats-title text-gray text-center">Statistics</h1>
+  <pk-global-stats-cards></pk-global-stats-cards>
+  <div class="row mt-3">
+    <div class="col-xl-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">Affected Nations</h4>
+            <p class="card-subtitle text-gray">Today’s Stats</p>
+          </div>
+          <div class="header-content form-group has-search d-flex justify-content-between align-items-end">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16 form-control-feedback" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
+            <input class="search-input form-control " [(ngModel)]="filterPost" name="filterPost" type="search"  placeholder=" Search for ...">
+            <select class="btn btn-primary "style="height: 25px;font-size:10px;font-family: $font-raleway;
+            font-weight: bold" #sortBy (change)="sortCountries(sortBy.value)">
+              <option selected="" disabled >Sort by</option>
+              <option value="cases">Total Cases</option>
+              <option value="todayCases">Today Cases</option>
+              <option value="deaths">Total Deaths</option>
+              <option value="todayDeaths">Today Deaths</option>
+              </select>
+          </div>
+        </div>
+            <div class="spinner"  [class.d-none]="!loadingCountries" style="min-height: 250px; max-height: 400px; height: 400px;">
+              <i class=" fa fa-spinner fa-spin fa-3x"></i>
+            </div> 
+        <div class="card-body scrolling"[class.d-none]="loadingCountries" style="min-height: 250px; max-height: 400px; height: 400px;">
+          <a class="row border country-link" *ngFor="let country of countries"
+            [routerLink]="['/country', country.country]">
+            <div class="col-8" style="padding-left: 0%;">
+              <div class="d-flex">
+                <img *ngIf="countryCodes[country.country]" style="height: 30px; width: 40px;"
+                src="assets/images/flags/svg/{{countryCodes[country.country].toLowerCase()}}.svg" alt="{{country.country}}">
+                <img *ngIf="!countryCodes[country.country]" style="height: 30px; width: 40px;"
+                src="assets/images/flags/svg/unknown.svg" alt="{{country.country}}">
+                <h3 class="mt-0 mb-1 tittle">{{country.country}}</h3>
+              </div>
+              <p style="margin-top: 0px;  margin-bottom: 2%;"><span class="text-blue" style="font-size: 13px">{{country.cases}}
+                Cases</span> & <span class="text-red" style="font-size: 13px">{{country.deaths}} Deaths</span></p>
+            </div>
+            <div class="col-4">
+              <p class="mt-0 mb-1 text-blue" style="font-size: 11px">{{country.todayCases}} Cases</p>
+              <p class="mt-0 mb-1 text-red " style="font-size: 11px">{{country.todayDeaths}} Deaths</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 col-12">
+      <div class="card card__inner">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">Worldwide Infections</h4>
+            <div class="action-bar">
+              <button class="btn btn-primary-blue"  type="button" (click)="loadMap('cases')">Infections</button>
+              <button class="btn btn-primary-red" type="button"(click)="loadMap('deaths')" >Deaths</button>
+              <button class="btn btn-primary-green" type="button"(click)="loadMap('recovered')">Recoveries</button>
+              <button class="btn btn-primary-yellow" type="button"(click)="loadMap('critical')">Critical</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-body" >
+            <div  id="worldChart" style="width: 100%; height: 430px;min-height: 250px; overflow: hidden"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row mt-3">
+    <div class="col-xl-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">Rates Distribution</h4>
+          </div>
+        </div>
+        <div class="spinner"  [class.d-none]="!loading" style="min-height: 250px; max-height: 400px; height: 400px;">
+          <i class=" fa fa-spinner fa-spin fa-3x"></i>
+        </div>
+        <div class="card-body" [class.d-none]="loading" style="min-height: 250px; max-height: 400px; padding: 0%;">
+          <div  id="radarChart" style="width: 100%; height: 400px "></div>
+        </div>  
+      </div>
+    </div>
+    <div class="col-xl-8 col-12">
+      <div class="card card__inner">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">History of infections</h4>
+           
+          </div>
+        </div>
+        <div class="spinner"  [class.d-none]="!loading" style="min-height: 250px; max-height: 400px; height: 400px;">
+          <i class=" fa fa-spinner fa-spin fa-3x"></i>
+        </div>
+        <div [class.d-none]="loading" class="card-body">
+          <div id="lineChart" style="width: 100%; height: 430px;min-height: 250px; max-height: 430px; overflow: hidden"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-xl-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">Distribution of infections by country</h4>
+          </div>
+        </div>
+        <div class="spinner"  [class.d-none]="!loading" style="min-height: 250px; max-height: 400px; height: 400px;">
+          <i class=" fa fa-spinner fa-spin fa-3x"></i>
+        </div>
+        <div class="card-body" [class.d-none]="loading" style="min-height: 250px; max-height: 400px; padding: 0%;">
+          <div id="pieChart" style="width: 100%; height: 300px"></div>
+        </div>  
+      </div>
+    </div>
+    <div class="col-xl-8 col-12">
+      <div class="card card__inner">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">Infection rates</h4>
+          </div>
+        </div>
+        <div class="card-body "style="width: 100%; height: 330px;min-height: 250px; max-height: 430px; overflow: hidden">
+         <div class="row scrolling-box">
+          <div class="col-xl-12 col-12">
+            <div class="row ">
+              <div class="col-xl-6 col-12">
+               
+                <div class="box-rates" >
+                  <h5 style="margin-bottom: 0%;">Recovery Rate</h5>
+                  <div class="spinner-box"  [class.d-none]="!loading">
+                    <i class=" fa fa-spinner fa-spin fa-3x"></i>
+                  </div>
+                  <h2 [class.d-none]="loading" class="box-rates-green">{{(totalRecoveries / finishedCases * 100) | number:'.1-2'}}%</h2>
+                </div>
+              </div>
+              <div class="col-xl-6 col-12">
+                <div class="box-rates">
+                  <h5 style="margin-bottom: 0%;">Death Rate</h5>
+                  <div class="spinner-box"  [class.d-none]="!loading">
+                    <i class=" fa fa-spinner fa-spin fa-3x"></i>
+                  </div>
+                  <h2  [class.d-none]="loading" class="box-rates-red">{{(totalDeaths / finishedCases * 100) | number:'.1-2'}}%</h2>
+                </div>
+              </div>
+             </div>
+             <div class="row ">
+              <div class="col-xl-6 col-12">
+                <div class="box-rates">
+                  <h5 style="margin-bottom: 0%;">Critical Rate</h5>
+                  <div class="spinner-box"  [class.d-none]="!loading">
+                    <i class=" fa fa-spinner fa-spin fa-3x"></i>
+                  </div>
+                  <h2 [class.d-none]="loading" class="box-rates-yellow">{{(totalCritical / activeCases * 100) | number:'.1-2'}}%</h2>
+                </div>
+              </div>
+              <div class="col-xl-6 col-12">
+                <div class="box-rates">
+                  <h5 style="margin-bottom: 0%;">Nations Affected</h5>
+                  <div class="spinner-box"  [class.d-none]="!loading">
+                    <i class=" fa fa-spinner fa-spin fa-3x"></i>
+                  </div>
+                  <h2 [class.d-none]="loading" class="box-rates-blue" *ngIf="fuse">{{fuse.list.length}}</h2>
+                </div>
+              </div>
+             </div>
+          </div>
+         </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+<header class="d-flex justify-content-between">
+  <div class="logo">
+    <img id="covidlogo" alt="COVID-19 Logo" src="/assets/images/covid-logo.svg"/>
+  </div>
+  <pk-toggle-swtich
+    [isChecked]="isDarkThemeActive"
+    (toggleTheme)="onToggleTheme($event)">
+  </pk-toggle-swtich>
+</header>

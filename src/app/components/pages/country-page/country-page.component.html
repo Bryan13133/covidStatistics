@@ -1,0 +1,104 @@
+<section class="stats-dashboard">
+  <h2 class="text-gray text-bold title text-center"> {{ countryName }}'s Statistics</h2>
+  <pk-stats-cards [country]="countryName"></pk-stats-cards>
+  <div class="row mt-3">
+    <div class="col-xl-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">Rates Distribution</h4>
+          </div>
+        </div>
+        <div class="card-body" style="min-height: 250px; max-height: 400px; padding: 0%;">
+          <div id="radarChart" style="width: 100%; height: 400px"></div>
+        </div>  
+      </div>
+    </div>
+    <div class="col-xl-8 col-12">
+      <div class="card card__inner">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">History of infections</h4>
+           
+          </div>
+        </div>
+        
+        <div  class="card-body">
+          <div id="lineChart" style="width: 100%; height: 430px;min-height: 250px; max-height: 430px; overflow: hidden"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-xl-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">{{countryName}}'s Distribution of infections by country</h4>
+          </div>
+        </div>
+        <div class="card-body" style="min-height: 250px; max-height: 400px; padding: 0%;">
+          <div id="pieChart" style="width: 100%; height: 300px"></div>
+        </div>  
+      </div>
+    </div>
+    <div class="col-xl-8 col-12">
+      <div class="card card__inner">
+        <div class="card-header">
+          <div class="header-title d-flex justify-content-between align-items-end">
+            <h4 class="card-title text-gray text-bold">Infection rates</h4>
+          </div>
+        </div>
+        <div class="card-body "style="width: 100%; height: 330px;min-height: 250px; max-height: 430px; overflow: hidden">
+         <div class="row scrolling-box">
+          <div class="col-xl-12 col-12">
+            <div class="row ">
+              <div class="col-xl-6 col-12">
+               
+                <div class="box-rates" >
+                  <h5 style="margin-bottom: 0%;">Recovery Rate</h5>
+                  <div class="spinner-box"  [class.d-none]="!loading">
+                    <i class=" fa fa-spinner fa-spin fa-3x"></i>
+                  </div>
+                  <h2 [class.d-none]="loading" class="box-rates-green">{{(totalRecoveries / finishedCases * 100) | number:'.1-2'}}%</h2>
+                </div>
+              </div>
+              <div class="col-xl-6 col-12">
+                <div class="box-rates">
+                  <h5 style="margin-bottom: 0%;">Death Rate</h5>
+                  <div class="spinner-box"  [class.d-none]="!loading">
+                    <i class=" fa fa-spinner fa-spin fa-3x"></i>
+                  </div>
+                  <h2  [class.d-none]="loading" class="box-rates-red">{{(totalDeaths / finishedCases * 100) | number:'.1-2'}}%</h2>
+                </div>
+              </div>
+             </div>
+             <div class="row ">
+              <div class="col-xl-6 col-12">
+                <div class="box-rates">
+                  <h5 style="margin-bottom: 0%;">Critical Rate</h5>
+                  <div class="spinner-box"  [class.d-none]="!loading">
+                    <i class=" fa fa-spinner fa-spin fa-3x"></i>
+                  </div>
+                  <h2 [class.d-none]="loading" class="box-rates-yellow">{{(totalCritical / activeCases * 100) | number:'.1-2'}}%</h2>
+                </div>
+              </div>
+              <div class="col-xl-6 col-12">
+                <div class="box-rates">
+                  <h5 style="margin-bottom: 0%;">Mild Cases</h5>
+                  <div class="spinner-box"  [class.d-none]="!loading">
+                    <i class=" fa fa-spinner fa-spin fa-3x"></i>
+                  </div>
+                  <h2 [class.d-none]="loading" class="box-rates-blue" >{{(100-(totalCritical / activeCases * 100)) | number:'.1-2'}}%</h2>
+                </div>
+              </div>
+             </div>
+          </div>
+         </div>
+         
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
